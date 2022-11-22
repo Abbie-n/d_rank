@@ -1,0 +1,74 @@
+name: d_rank
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+  cached_network_image: ^3.2.2
+
+  connectivity_plus: ^3.0.2
+  dio: ^4.0.6
+
+  equatable: ^2.0.5 
+
+  flutter_bloc: ^8.1.1
+  flutter_hooks: ^0.18.5+1
+
+  flutter_styled_toast: ^2.1.3
+
+  freezed_annotation: ^2.2.0
+  get_it: ^7.2.0
+
+  go_router: ^5.2.0
+
+  hooks_riverpod: ^2.1.1
+
+  injectable: ^1.5.4
+  json_annotation: ^4.7.0
+
+  loggy: ^2.0.3
+  
+  shared_preferences: ^2.0.15 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+  
+  auto_route_generator:
+  build_runner:
+  freezed:
+  json_serializable:
+  injectable_generator:
+  mocktail: ^0.3.0
+  bloc_test: ^9.1.0
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/tektur/
+ 
+  fonts:
+    - family: Tektur
+      fonts:
+        - asset: assets/fonts/tektur/Tektur-Black.ttf
+        - asset: assets/fonts/tektur/Tektur-Bold.ttf
+        - asset: assets/fonts/tektur/Tektur-ExtraBold.ttf
+        - asset: assets/fonts/tektur/Tektur-Medium.ttf
+        - asset: assets/fonts/tektur/Tektur-Regular.ttf
+        - asset: assets/fonts/tektur/Tektur-SemiBold.ttf
+
