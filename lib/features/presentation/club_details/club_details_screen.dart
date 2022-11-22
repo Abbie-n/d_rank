@@ -71,7 +71,7 @@ class ClubDetailsScreen extends StatelessWidget {
                     ),
                     TextSpan(
                       text:
-                          '${context.l10n.from} ${data.country} ${context.l10n.has_value} ${data.value} ${context.l10n.euro}',
+                          '${context.l10n.from} ${data.country} ${context.l10n.has_value} ${data.value} ${'${context.l10n.millions} ${context.l10n.euro}'}',
                     )
                   ],
                 ),

@@ -69,18 +69,16 @@ class AACScreen extends HookConsumerWidget {
                       child: ListView.separated(
                         itemCount: dataState.value.length,
                         padding: EdgeInsets.zero,
-                        itemBuilder: (context, index) => GestureDetector(
+                        itemBuilder: (context, index) => AACSingleItem(
+                          country: '${data[index].country}',
+                          image: '${data[index].image}',
+                          name: '${data[index].name}',
+                          value: '${data[index].value}',
                           onTap: () => context.goNamed(
                             'club-details',
                             params: {
                               'data': jsonEncode(data[index]),
                             },
-                          ),
-                          child: AACSingleItem(
-                            country: '${data[index].country}',
-                            image: '${data[index].image}',
-                            name: '${data[index].name}',
-                            value: '${data[index].value}',
                           ),
                         ),
                         separatorBuilder: (context, index) => const Divider(
