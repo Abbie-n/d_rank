@@ -44,6 +44,11 @@ class DataRepositoryImpl implements DataRepository {
 
     if (dataString == null || shouldReload) {
       final data = await getData();
+
+      data.sort((a, b) {
+        return a.value!.compareTo(b.value!);
+      });
+
       return data;
     }
 
