@@ -1,10 +1,10 @@
 {
     "@@locale": "en",
     "app_title": "D-Rank",
-    "millions": "millions",
+    "millions": "million",
     "the_club": "The club ",
     "from": " from",
-    "has_value": " has a value of ",
+    "has_value": "has a value of",
     "euro": "Euro",
     "an_error_occured": "An error occured!",
     "no_internet": "No internet connection",
