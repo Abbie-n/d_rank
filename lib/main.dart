@@ -1,4 +1,6 @@
 import 'package:d_rank/core/config/injection.dart';
+import 'package:d_rank/shared/extensions/build_context_extension.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:d_rank/routes/router.dart';
 import 'package:d_rank/shared/shared.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +15,12 @@ Future<void> main() async {
   Loggy.initLoggy();
 
   runApp(
-    const ProviderScope(
-      child: PokedexApp(),
-    ),
+    const ProviderScope(child: DRankApp()),
   );
 }
 
-class PokedexApp extends StatelessWidget {
-  const PokedexApp({super.key});
+class DRankApp extends StatelessWidget {
+  const DRankApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,28 @@ class PokedexApp extends StatelessWidget {
         title: 'D-Rank',
         theme: AppTheme.themeData,
         routerConfig: router,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('de', ''),
+        ],
+        // Returns a locale which will be used by the app
+        localeResolutionCallback: (locale, supportedLocales) {
+          // Check if the current device locale is supported
+          for (var supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale!.languageCode) {
+              return supportedLocale;
+            }
+          }
+          // If the locale of the device is not supported, use the first one
+          // from the list (English, in this case).
+          return supportedLocales.first;
+        },
       ),
     );
   }

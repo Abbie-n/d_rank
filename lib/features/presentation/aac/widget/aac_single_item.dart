@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:d_rank/shared/extensions/build_context_extension.dart';
 import 'package:d_rank/shared/shared.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,7 @@ class AACSingleItem extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextWidget(
-                    '$value millions',
+                    '$value ${context.l10n.millions}',
                     fontSize: 18,
                     textColor: AppColors.darkText.withOpacity(.8),
                     fontWeight: FontWeight.w500,

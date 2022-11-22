@@ -1,26 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:d_rank/features/model/data_model.dart';
 import 'package:d_rank/features/presentation/club_details/widget/details_header.dart';
-import 'package:d_rank/features/presentation/cubit/get_data_cubit.dart';
+import 'package:d_rank/shared/extensions/build_context_extension.dart';
 import 'package:d_rank/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class ClubDetailsScreen extends HookConsumerWidget {
+class ClubDetailsScreen extends StatelessWidget {
   const ClubDetailsScreen({super.key, required this.data});
   final DataModel data;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cubit = ref.watch(getDataCubitProvider);
-
-    useEffect(() {
-      cubit.call();
-      return null;
-    }, []);
-
+  Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
@@ -65,7 +56,7 @@ class ClubDetailsScreen extends HookConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: RichText(
                 text: TextSpan(
-                  text: 'The club ',
+                  text: context.l10n.the_club,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -73,14 +64,14 @@ class ClubDetailsScreen extends HookConsumerWidget {
                   ),
                   children: [
                     TextSpan(
-                      text: '${data.name} ',
+                      text: '${data.name}',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(
                       text:
-                          'of ${data.country} has a value of ${data.value} Euro',
+                          '${context.l10n.from} ${data.country} ${context.l10n.has_value} ${data.value} ${context.l10n.euro}',
                     )
                   ],
                 ),
