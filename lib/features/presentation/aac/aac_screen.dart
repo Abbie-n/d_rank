@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:d_rank/features/model/data_model.dart';
 import 'package:d_rank/features/presentation/aac/widget/aac_header.dart';
 import 'package:d_rank/features/presentation/aac/widget/aac_single_item.dart';
 import 'package:d_rank/features/presentation/cubit/get_data_cubit.dart';
@@ -17,6 +18,8 @@ class AACScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cubit = ref.watch(getDataCubitProvider);
+    final shouldAscend = useState(true);
+    final dataState = useState(<DataModel>[]);
 
     useEffect(() {
       cubit.call();
@@ -25,17 +28,28 @@ class AACScreen extends HookConsumerWidget {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
-      child: BlocBuilder<GetDataCubit, GetDataState>(
+      child: BlocConsumer<GetDataCubit, GetDataState>(
         bloc: cubit,
+        listener: (context, state) {
+          state.maybeWhen(
+            finished: (data) => WidgetsBinding.instance
+                .addPostFrameCallback((_) => dataState.value = data),
+            orElse: () => null,
+          );
+        },
         builder: (context, state) {
           return Scaffold(
             body: Column(
               children: [
-                const AACHeader(),
+                AACHeader(onFilter: () async {
+                  shouldAscend.value = !shouldAscend.value;
+                  await cubit.filterList(
+                      list: dataState.value, shouldAscend: shouldAscend.value);
+                }),
                 state.maybeWhen(
                   finished: (data) => Expanded(
                     child: ListView.separated(
-                      itemCount: data.length,
+                      itemCount: dataState.value.length,
                       padding: EdgeInsets.zero,
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () => context.goNamed(

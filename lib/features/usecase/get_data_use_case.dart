@@ -32,4 +32,12 @@ class GetDataUseCase {
       return Data.failure(GenericException());
     }
   }
+
+  Future<Data<List<DataModel>>> filterList(
+      {required List<DataModel> list, required bool shouldAscend}) async {
+    final result =
+        await repository.filterList(list: list, shouldAscend: shouldAscend);
+
+    return Data.success(data: result);
+  }
 }

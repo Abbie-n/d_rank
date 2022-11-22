@@ -51,6 +51,32 @@ class DataRepositoryImpl implements DataRepository {
       dataList.add(DataModel.fromJson(x));
     }
 
+    dataList.sort((a, b) {
+      return a.value!.compareTo(b.value!);
+    });
+
+    return dataList;
+  }
+
+  @override
+  Future<List<DataModel>> filterList(
+      {required List<DataModel> list, required bool shouldAscend}) async {
+    List<DataModel> dataList = [];
+
+    for (final x in list) {
+      dataList.add(x);
+    }
+
+    if (shouldAscend) {
+      dataList.sort((a, b) {
+        return a.value!.compareTo(b.value!);
+      });
+    } else {
+      dataList.sort((a, b) {
+        return b.value!.compareTo(a.value!);
+      });
+    }
+
     return dataList;
   }
 }
