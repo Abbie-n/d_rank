@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:d_rank/features/model/data_model.dart';
 import 'package:d_rank/features/presentation/aac/aac_screen.dart';
 import 'package:d_rank/features/presentation/club_details/club_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +15,14 @@ final GoRouter router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: 'club-details',
+          name: 'club-details',
+          path: 'club-details/:data',
           builder: (BuildContext context, GoRouterState state) {
-            return const ClubDetailsScreen();
+            return ClubDetailsScreen(
+              data: DataModel.fromJson(
+                jsonDecode(state.params['data']!),
+              ),
+            );
           },
         ),
       ],
