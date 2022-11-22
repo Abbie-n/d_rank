@@ -1,4 +1,5 @@
 import 'package:d_rank/bloc_provider.dart';
+import 'package:d_rank/features/model/data_model.dart';
 import 'package:d_rank/features/presentation/cubit/get_data_state.dart';
 import 'package:d_rank/features/usecase/get_data_use_case.dart';
 import 'package:d_rank/providers.dart';
@@ -19,6 +20,22 @@ class GetDataCubit extends Cubit<GetDataState> {
     emit(const GetDataState.loading());
 
     final result = await getDataUseCase();
+
+    result.maybeWhen(
+      success: (data) async => emit(GetDataState.finished(data: data)),
+      failure: (exception) => emit(GetDataState.error(
+        message: exception.toString(),
+      )),
+      orElse: () => null,
+    );
+  }
+
+  Future<void> filterList(
+      {required List<DataModel> list, required bool shouldAscend}) async {
+    emit(const GetDataState.loading());
+
+    final result =
+        await getDataUseCase.filterList(list: list, shouldAscend: shouldAscend);
 
     result.maybeWhen(
       success: (data) async => emit(GetDataState.finished(data: data)),
