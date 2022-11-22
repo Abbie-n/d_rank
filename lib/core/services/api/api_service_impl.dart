@@ -1,7 +1,4 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:d_rank/core/services/api/api_service.dart';
-import 'package:d_rank/shared/extensions/connectivity_extension.dart';
-import 'package:d_rank/shared/shared.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 

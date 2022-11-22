@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData themeData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    fontFamily: 'Tekur',
+    fontFamily: 'Roboto',
     scaffoldBackgroundColor: Colors.white,
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor,

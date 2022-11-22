@@ -59,16 +59,3 @@ flutter:
 
   uses-material-design: true
 
-  assets:
-    - assets/fonts/tektur/
- 
-  fonts:
-    - family: Tektur
-      fonts:
-        - asset: assets/fonts/tektur/Tektur-Black.ttf
-        - asset: assets/fonts/tektur/Tektur-Bold.ttf
-        - asset: assets/fonts/tektur/Tektur-ExtraBold.ttf
-        - asset: assets/fonts/tektur/Tektur-Medium.ttf
-        - asset: assets/fonts/tektur/Tektur-Regular.ttf
-        - asset: assets/fonts/tektur/Tektur-SemiBold.ttf
-
